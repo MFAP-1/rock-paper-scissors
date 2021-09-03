@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# obsoletes readme
+README-template.md
+README(react).md
+README(obsolete).md
+style-guide.md
+
+
+# 
+*.sketch
+*.xd
+*.fig

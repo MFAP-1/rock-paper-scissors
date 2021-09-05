@@ -1,0 +1,15 @@
+/* main app div */
+#main-app-container {
+  /* background-color: #182243; */
+  /* background: radial-gradient((214, 47%, 23%), (237, 49%, 15%)); */
+  background: radial-gradient(ellipse at top, #1f3756, #141539);
+  background-position: left;
+  color: white;
+  width: 94vw;
+  height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 3vh 3vw;
+}

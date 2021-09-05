@@ -1,0 +1,27 @@
+#white-bg-score {
+  width: 9vw;
+  height: 10vh;
+
+  background-color: white;
+
+  border-radius: 0.6rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-top: 0.5rem;
+}
+
+#score-title {
+  color: #424d92;
+  letter-spacing: 0.15rem;
+  font-size: 0.8em;
+  padding-bottom: 0.6rem;
+}
+
+#current-score-display {
+  font-size: 3rem;
+  color: #555467;
+}

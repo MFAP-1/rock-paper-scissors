@@ -1,0 +1,18 @@
+#main-title-div {
+  width: 45vw;
+  padding: 1.5rem;
+
+  border: #556882 0.2rem solid;
+  border-radius: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5vh;
+
+  line-height: 1.8rem;
+}

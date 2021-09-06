@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import "./Btn.css";
 
 function Btn(props) {
@@ -9,6 +10,8 @@ function Btn(props) {
       return "rgb(237, 166, 30)";
     } else if (props.name === "rock") {
       return "rgb(222, 63, 91)";
+    } else {
+      return "";
     }
   };
 
@@ -19,12 +22,13 @@ function Btn(props) {
       return "rgb(195, 108, 27)";
     } else if (props.name === "rock") {
       return "rgb(158, 22, 49)";
+    } else {
+      return "";
     }
   };
 
   return (
     <Link to={"/game/" + props.name} name={props.name} type={props.type}>
-      {console.log("renderizou um ", props.type)}
       <button
         style={{
           border: `${defineBorderColor()} 1rem solid`,

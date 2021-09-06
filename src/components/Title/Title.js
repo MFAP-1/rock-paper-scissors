@@ -1,7 +1,7 @@
 import Score from "../Score/Score";
 import "./Title.css";
 
-function Title() {
+function Title(props) {
   return (
     <div id="main-title-div">
       <div>
@@ -13,7 +13,7 @@ function Title() {
           SCISSORS
         </h1>
       </div>
-      <Score />
+      <Score score={props.score} />
     </div>
   );
 }

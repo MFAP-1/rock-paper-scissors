@@ -1,97 +1,175 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 import papper from "../../images/icon-paper.svg";
 import rock from "../../images/icon-rock.svg";
 import scissors from "../../images/icon-scissors.svg";
+import close from "../../images/icon-close.svg";
 
 import Btn from "../Options/Btn";
 
 import "./Game.css";
 
-function Game(props) {
+// import { updateScore } from "../../App";
+
+class Game extends React.Component {
+  state = {
+    player: {
+      wins: null,
+    },
+    house: {
+      name: "",
+      type: "",
+    },
+  };
+
   // Setting the Based on what the player picked
-  const defineTypePicked = () => {
-    if (props.match.params.pickedType === "papper") {
+  definePickedType = () => {
+    if (this.props.match.params.pickedType === "papper") {
       return papper;
-    } else if (props.match.params.pickedType === "scissors") {
+    } else if (this.props.match.params.pickedType === "scissors") {
       return scissors;
-    } else if (props.match.params.pickedType === "rock") {
+    } else if (this.props.match.params.pickedType === "rock") {
       return rock;
     }
   };
 
   // to randomize the play for the 'House'.
-  let HouseName = "";
-  const randomHousePicking = () => {
-    let HousePicked = Math.floor(Math.random() * 3); // 0 is papper, 1 is scissors and 2 is rock
-    console.log(HousePicked); // -------------------------------DEBUGGER
-    if (HousePicked === 0) {
-      HouseName = "papper";
-      console.log("house pegou", HouseName); // -------------------------------DEBUGGER
-      return papper;
-    } else if (HousePicked === 1) {
-      HouseName = "scissors";
-      console.log("house pegou", HouseName); // -------------------------------DEBUGGER
-      return scissors;
-    } else if (HousePicked === 2) {
-      HouseName = "rock";
-      console.log("house pegou", HouseName); // -------------------------------DEBUGGER
-      return rock;
-    }
+  randomHousePicking = () => {
+    do {
+      let HousePicked = Math.floor(Math.random() * 3); // 0 is papper, 1 is scissors and 2 is rock
+      if (HousePicked === 0) {
+        this.setState({ house: { name: "papper", type: papper } });
+      } else if (HousePicked === 1) {
+        this.setState({ house: { name: "scissors", type: scissors } });
+      } else if (HousePicked === 2) {
+        this.setState({ house: { name: "rock", type: rock } });
+      }
+    } while (this.state.house.name === this.props.match.params.pickedType); // avoiding the tie scenario
   };
 
   // Checking if the player has won (return true) or lost (return false)
-  const playerWon = () => {
-    console.log("Player:", props.match.params.pickedType, "House:", HouseName); // -------------------------------DEBUGGER
-    if (props.match.params.pickedType === "papper") {
-      if (HouseName === "rock") {
-        return true;
-      } else if (HouseName === "scissors") {
-        return false;
-      } else {
-        console.log("tie"); // -------------------------------DEBUGGER
-        return false;
+  setResult = () => {
+    // console.log(
+    //   "Player:",
+    //   this.props.match.params.pickedType,
+    //   "House:",
+    //   this.state.house.name
+    // ); // -------------------------------DEBUGGER
+    if (this.props.match.params.pickedType === "papper") {
+      if (this.state.house.name === "rock") {
+        this.setState({ player: { wins: true } });
+      } else if (this.state.house.name === "scissors") {
+        this.setState({ player: { wins: false } });
       }
-    } else if (props.match.params.pickedType === "rock") {
-      if (HouseName === "papper") {
-        return false;
-      } else if (HouseName === "scissors") {
-        return true;
-      } else {
-        console.log("tie"); // -------------------------------DEBUGGER
-        return false;
+    } else if (this.props.match.params.pickedType === "rock") {
+      if (this.state.house.name === "papper") {
+        this.setState({ player: { wins: false } });
+      } else if (this.state.house.name === "scissors") {
+        this.setState({ player: { wins: true } });
       }
-    } else if (props.match.params.pickedType === "scissors") {
-      if (HouseName === "papper") {
-        return true;
-      } else if (HouseName === "rock") {
-        return false;
-      } else {
-        console.log("tie"); // -------------------------------DEBUGGER
-        return false;
+    } else if (this.props.match.params.pickedType === "scissors") {
+      if (this.state.house.name === "papper") {
+        this.setState({ player: { wins: true } });
+      } else if (this.state.house.name === "rock") {
+        this.setState({ player: { wins: false } });
       }
     }
   };
 
-  return (
-    <div id="game-main-container">
-      <div>
-        <h3>YOU PICKED</h3>
-        <Btn
-          type={defineTypePicked()}
-          name={props.match.params.pickedType}
-          alt={`${props.match.params.pickedType}-icon`}
-        />
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.randomHousePicking();
+    }, 1500);
+    // setTimeout(() => {
+    //   this.renderResult();
+    // }, 3000);
+  };
+
+  // render House's Pick (blank render pick included)
+  renderHousePick = () => {
+    if (this.state.house.name !== "") {
+      return (
+        <div>
+          <h3>THE HOUSE PICKED</h3>
+          <Btn
+            type={this.state.house.type}
+            name={this.state.house.name}
+            alt={`${this.state.house.name}-icon`}
+          />
+        </div>
+      );
+    } else {
+      // when the house hasn't pick yet, print blank
+      return (
+        <div>
+          <h3>THE HOUSE PICKED</h3>
+          <Btn type={close} name="blank" alt="blank-icon" />
+        </div>
+      );
+    }
+  };
+
+  // render the final result
+  evaluateResult = () => {
+    if (this.state.player.wins !== null) {
+      // console.log(
+      //   this.state.player.wins
+      //     ? "Resultado: player ganhou"
+      //     : "Resultado: player perdeu"
+      // ); // ---------------------DEBUGGER
+      // setTimeout(() => {
+      // this.renderResult();
+      // Score.updateScore();
+      return (
+        <div>
+          {this.state.player.wins ? <h2>YOU WIN</h2> : <h2>YOU LOSE</h2>}
+
+          {/* {console.log("propiedade update", this.props.route.update)} */}
+          {/* {updateScore()} */}
+          <Link to={"/"}>
+            <button id="result-btn">PLAY AGAIN</button>
+          </Link>
+        </div>
+      );
+      // }, 1000);
+    }
+  };
+
+  // //
+  // renderResult = () => {
+  //   console.log("entrou no render result");
+  //   return (
+  //     <div>
+  //       {this.state.player.wins ? <h2>YOU WIN</h2> : <h2>YOU LOSE</h2>}
+  //       <Link to={"/"} playerWon={this.state.player.wins}>
+  //         <button id="result-btn">PLAY AGAIN</button>
+  //       </Link>
+  //     </div>
+  //   );
+  // };
+
+  render() {
+    // Checking the conditions to set the result
+    if (this.state.player.wins === null) {
+      this.setResult();
+      // console.log("entrou no playerWon");
+    }
+    return (
+      <div id="game-main-container">
+        <div>
+          <h3>YOU PICKED</h3>
+          <Btn
+            type={this.definePickedType()}
+            name={this.props.match.params.pickedType}
+            alt={`${this.props.match.params.pickedType}-icon`}
+          />
+        </div>
+        {this.evaluateResult()}
+        {this.renderHousePick()}
       </div>
-      <div>
-        <h3>THE HOUSE PICKED</h3>
-        <Btn
-          type={randomHousePicking()}
-          name={HouseName}
-          alt={`${HouseName}-icon`}
-        />
-      </div>
-      {console.log(playerWon() ? "player ganhou" : "player perdeu")}
-    </div>
-  );
+    );
+  }
 }
 
 export default Game;

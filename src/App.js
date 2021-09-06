@@ -11,19 +11,15 @@ import React from "react";
 class App extends React.Component {
   state = {
     score: 0,
-    gameOver: false,
-    playerWon: false,
   };
 
-  updateScore = () => {
+  updateScore = (result) => {
     console.log("entrou no update");
-    // if (this.state.gameOver) {
-    // if (this.state.playerWon) {
-    this.setState({ score: this.state.score + 1 });
-    // } else {
-    // this.setState({ score: this.state.score - 1 });
-    // }
-    // }
+    if (result) {
+      this.setState({ score: this.state.score + 1 });
+    } else {
+      this.setState({ score: this.state.score - 1 });
+    }
   };
 
   render() {
@@ -34,9 +30,9 @@ class App extends React.Component {
           <Route exact path="/" component={Options} />
           <Route
             path="/game/:pickedType"
-            component={Game}
-            // update={this.updateScore}
-            // render={() => <Game {...props} update={this.updateScore} />}
+            render={(props) => (
+              <Game {...props} updateScore={this.updateScore} />
+            )}
           />
           <Route path="/result" />
         </BrowserRouter>
@@ -48,14 +44,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// export const updateScore = () => {
-//   console.log("entrou no update");
-//   // if (this.state.gameOver) {
-//   // if (this.state.playerWon) {
-//   this.setState({ score: this.state.score + 1 });
-//   // } else {
-//   // this.setState({ score: this.state.score - 1 });
-//   // }
-//   // }
-// };

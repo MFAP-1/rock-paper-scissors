@@ -50,12 +50,6 @@ class Game extends React.Component {
 
   // Checking if the player has won (return true) or lost (return false)
   setResult = () => {
-    // console.log(
-    //   "Player:",
-    //   this.props.match.params.pickedType,
-    //   "House:",
-    //   this.state.house.name
-    // ); // -------------------------------DEBUGGER
     if (this.props.match.params.pickedType === "papper") {
       if (this.state.house.name === "rock") {
         this.setState({ player: { wins: true } });
@@ -81,9 +75,6 @@ class Game extends React.Component {
     setTimeout(() => {
       this.randomHousePicking();
     }, 1500);
-    // setTimeout(() => {
-    //   this.renderResult();
-    // }, 3000);
   };
 
   // render House's Pick (blank render pick included)
@@ -113,47 +104,26 @@ class Game extends React.Component {
   // render the final result
   evaluateResult = () => {
     if (this.state.player.wins !== null) {
-      // console.log(
-      //   this.state.player.wins
-      //     ? "Resultado: player ganhou"
-      //     : "Resultado: player perdeu"
-      // ); // ---------------------DEBUGGER
-      // setTimeout(() => {
-      // this.renderResult();
-      // Score.updateScore();
       return (
         <div>
           {this.state.player.wins ? <h2>YOU WIN</h2> : <h2>YOU LOSE</h2>}
-
-          {/* {console.log("propiedade update", this.props.route.update)} */}
-          {/* {updateScore()} */}
           <Link to={"/"}>
             <button id="result-btn">PLAY AGAIN</button>
           </Link>
         </div>
       );
-      // }, 1000);
     }
   };
 
-  // //
-  // renderResult = () => {
-  //   console.log("entrou no render result");
-  //   return (
-  //     <div>
-  //       {this.state.player.wins ? <h2>YOU WIN</h2> : <h2>YOU LOSE</h2>}
-  //       <Link to={"/"} playerWon={this.state.player.wins}>
-  //         <button id="result-btn">PLAY AGAIN</button>
-  //       </Link>
-  //     </div>
-  //   );
-  // };
+  // method to update the Score
+  componentWillUnmount = () => {
+    this.props.updateScore(this.state.player.wins);
+  };
 
   render() {
     // Checking the conditions to set the result
     if (this.state.player.wins === null) {
       this.setResult();
-      // console.log("entrou no playerWon");
     }
     return (
       <div id="game-main-container">

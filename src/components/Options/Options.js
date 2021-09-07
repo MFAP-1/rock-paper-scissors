@@ -9,9 +9,6 @@ import "./Options.css";
 function Options(props) {
   return (
     <div id="btn-options-container">
-      {/* {console.log("Checkando a props passada", props.match.params.playerWon)}
-      {console.log("Checkando a função props passada", props.update)}
-      {props.match.params.playerWon ? console.log("yes") : console.log("no")} */}
       <div>
         <Btn type={papper} name="papper" alt="papper-icon" />
         <Btn type={scissors} name="scissors" alt="scissors-icon" />

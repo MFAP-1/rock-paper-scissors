@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 import papper from "../../images/icon-paper.svg";
 import rock from "../../images/icon-rock.svg";
 import scissors from "../../images/icon-scissors.svg";
-import close from "../../images/icon-close.svg";
 
 import Btn from "../Options/Btn";
 
 import "./Game.css";
-
-// import { updateScore } from "../../App";
 
 class Game extends React.Component {
   state = {
@@ -87,6 +84,7 @@ class Game extends React.Component {
             type={this.state.house.type}
             name={this.state.house.name}
             alt={`${this.state.house.name}-icon`}
+            winner={!this.state.player.wins}
           />
         </div>
       );
@@ -95,7 +93,7 @@ class Game extends React.Component {
       return (
         <div>
           <h3>THE HOUSE PICKED</h3>
-          <Btn type={close} name="blank" alt="blank-icon" />
+          <Btn type="blank" />
         </div>
       );
     }
@@ -133,6 +131,7 @@ class Game extends React.Component {
             type={this.definePickedType()}
             name={this.props.match.params.pickedType}
             alt={`${this.props.match.params.pickedType}-icon`}
+            winner={this.state.player.wins}
           />
         </div>
         {this.evaluateResult()}

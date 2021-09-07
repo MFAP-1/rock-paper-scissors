@@ -1,14 +1,26 @@
 #rules-div {
-  width: 8vw;
-  height: 3vh;
   margin-top: auto;
   margin-left: auto;
-  padding: 5px 5px 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+div > input {
+  background-color: transparent;
+  width: 8vw;
+  height: 4vh;
 
   text-align: center;
+  color: white;
   letter-spacing: 0.15rem;
   font-size: 0.9rem;
 
   border: #556882 0.17rem solid;
   border-radius: 0.4rem;
 }
+
+/* .hide-rules {
+  visibility: hidden;
+  position: absolute;
+} */

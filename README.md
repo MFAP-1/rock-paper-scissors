@@ -1,13 +1,17 @@
 # Rock, Paper, Scissors GAME
 
-... IN PROGRESS...
+## About the game
 
-This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is my solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH).
 
 ## Rules
 
-If the player wins, they gain 1 point. If the computer wins, the player loses one point.
+If the player wins, they gain one point. If the computer wins, the player loses one point.
 
 - Paper beats Rock
 - Rock beats Scissors
 - Scissors beats Paper
+
+## Play it now!
+
+Just follow the live link: <a href="/">Play rock-papper-scissors</a>.

@@ -27,17 +27,32 @@ function Btn(props) {
     }
   };
 
-  return (
-    <Link to={"/game/" + props.name} name={props.name} type={props.type}>
+  const renderBtn = () => {
+    return (
+      <span className={props.winner ? "winner-gradient" : ""}>
+        <Link to={"/game/" + props.name} name={props.name} type={props.type}>
+          <button
+            style={{
+              border: `${defineBorderColor()} 1rem solid`,
+              boxShadow: `0px 0.8vh ${defineShadowColor()}`,
+            }}
+          >
+            <img src={props.type} alt={props.alt} />
+          </button>
+        </Link>
+      </span>
+    );
+  };
+
+  const renderBlankBtn = () => {
+    return (
       <button
-        style={{
-          border: `${defineBorderColor()} 1rem solid`,
-          boxShadow: `0px 0.8vh ${defineShadowColor()}`,
-        }}
-      >
-        <img src={props.type} alt={props.alt} />
-      </button>
-    </Link>
-  );
+        className="blank-btn"
+        style={{ backgroundColor: "rgb(22, 31, 62)" }}
+      ></button>
+    );
+  };
+
+  return <>{props.type !== "blank" ? renderBtn() : renderBlankBtn()}</>;
 }
 export default Btn;

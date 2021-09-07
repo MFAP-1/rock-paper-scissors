@@ -14,10 +14,9 @@ class App extends React.Component {
   };
 
   updateScore = (result) => {
-    console.log("entrou no update");
     if (result) {
       this.setState({ score: this.state.score + 1 });
-    } else {
+    } else if (this.state.score > 0) {
       this.setState({ score: this.state.score - 1 });
     }
   };

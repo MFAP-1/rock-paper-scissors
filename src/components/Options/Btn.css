@@ -1,14 +1,30 @@
 /* general config for a btn */
-.link-btn {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin: 4vh 4vw;
-}
 
 button {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   margin: 4vh 4vw;
+}
+
+.blank-btn {
+  width: 125px;
+  height: 125px;
+  background-color: rgb(22, 31, 62);
+  border: none;
+  border-radius: 50%;
+  margin: 4vh 4vw;
+}
+
+.winner-gradient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-image: radial-gradient(
+    rgb(42, 51, 82) 55%,
+    rgb(37, 47, 79) 35%
+  ); /* rgb(32, 45, 77) 30% */
 }

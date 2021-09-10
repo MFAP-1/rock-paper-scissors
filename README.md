@@ -14,4 +14,4 @@ If the player wins, they gain one point. If the computer wins, the player loses 
 
 ## Play it now!
 
-Just follow the live link: <a href="/">Play rock-papper-scissors</a>.
+Just follow the live link: <a href="https://rock-papper-scissors-mfap.netlify.app/">Play rock-papper-scissors</a>.

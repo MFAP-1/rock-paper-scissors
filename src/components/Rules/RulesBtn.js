@@ -1,6 +1,6 @@
 import "./RulesBtn.css";
 
-import rulestable from "../../images/image-rules.svg";
+// import rulestable from "../../images/image-rules.svg";
 
 function RulesBtn() {
   const handleclick = (event) => {};
